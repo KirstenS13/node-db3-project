@@ -55,6 +55,15 @@ async function update(changes, id) {
 }
 
 // DELETE
+async function remove(id) {
+    const targetScheme = await findById(id);
+    if (targetScheme.length === 0) {
+        return null;
+    } else {
+        await db("schemes").where("id", id).del();
+        return targetScheme;
+    }
+}
 
 // export the db helper functions
 module.exports = {
@@ -62,5 +71,6 @@ module.exports = {
     findById,
     findSteps,
     add,
-    update
+    update,
+    remove
 };
