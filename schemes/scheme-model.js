@@ -7,23 +7,37 @@ const db = require("../data/config");
 
 // FIND
 function find() {
-    return db.select("*").from("schemes");
+    return db
+        .select("*")
+        .from("schemes");
     // alternate syntax
     // return db("schemes");
 }
 
 // FIND BY ID
 function findById(id) {
-    return db.select("*").from("schemes").where("id", id);
+    return db
+        .select("*")
+        .from("schemes")
+        .where("id", id);
     // alternate syntax
     // return db("schemes").where("id", id);
 }
 
 // FIND STEPS
 function findSteps(id) {
-    return db.select("*").from("steps").where("scheme_id", id);
+    return db
+        .select("s.id", "s.step_number", "s.instructions", "sc.scheme_name")
+        .from("steps as s")
+        .innerJoin("schemes as sc", "sc.id", "s.scheme_id")
+        .where("scheme_id", id)
+        .orderBy("s.step_number");
     // alternate syntax
-    // return db("steps").where("scheme_id", id);
+    // return db("steps")
+    //  .innerJoin("schemes as sc", "sc.id", "s.scheme_id")
+    //  .where("scheme_id", id)
+    //  .select("s.id", "s.step_number", "s.instructions", "sc.scheme_name")
+    //  .orderBy("s.step_number");
 }
 
 // ADD
