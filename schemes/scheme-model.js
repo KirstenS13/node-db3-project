@@ -20,6 +20,11 @@ function findById(id) {
 }
 
 // FIND STEPS
+function findSteps(id) {
+    return db.select("*").from("steps").where("scheme_id", id);
+    // alternate syntax
+    // return db("steps").where("scheme_id", id);
+}
 
 // ADD
 
@@ -30,5 +35,6 @@ function findById(id) {
 // export the db helper functions
 module.exports = {
     find,
-    findById
+    findById,
+    findSteps
 };
