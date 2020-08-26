@@ -5,5 +5,22 @@ const db = require("../data/config");
 
 // define db helper functions here
 
+// FIND
+function find() {
+    return db.select("*").from("schemes");
+}
+
+// FIND BY ID
+
+// FIND STEPS
+
+// ADD
+
+// UPDATE
+
+// DELETE
+
 // export the db helper functions
-module.exports = {};
+module.exports = {
+    find
+};
