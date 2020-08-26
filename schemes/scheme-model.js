@@ -8,9 +8,16 @@ const db = require("../data/config");
 // FIND
 function find() {
     return db.select("*").from("schemes");
+    // alternate syntax
+    // return db("schemes");
 }
 
 // FIND BY ID
+function findById(id) {
+    return db.select("*").from("schemes").where("id", id);
+    // alternate syntax
+    // return db("schemes").where("id", id);
+}
 
 // FIND STEPS
 
@@ -22,5 +29,6 @@ function find() {
 
 // export the db helper functions
 module.exports = {
-    find
+    find,
+    findById
 };
