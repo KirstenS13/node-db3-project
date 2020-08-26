@@ -43,12 +43,16 @@ function findSteps(id) {
 // ADD
 async function add(schema) {
     const id = await db("schemes").insert(schema);
-    console.log(id[0])
     const newScheme = await findById(id[0]);
     return newScheme;
 }
 
 // UPDATE
+async function update(changes, id) {
+    await db("schemes").update(changes).where("id", id);
+    const updatedScheme = await findById(id);
+    return updatedScheme;
+}
 
 // DELETE
 
@@ -57,5 +61,6 @@ module.exports = {
     find,
     findById,
     findSteps,
-    add
+    add,
+    update
 };
